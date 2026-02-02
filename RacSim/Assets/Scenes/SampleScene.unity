@@ -608,7 +608,6 @@ GameObject:
   - component: {fileID: 1573963772}
   - component: {fileID: 1573963771}
   - component: {fileID: 1573963770}
-  - component: {fileID: 1573963774}
   m_Layer: 0
   m_Name: Raccoon
   m_TagString: Untagged
@@ -675,26 +674,6 @@ Transform:
   - {fileID: 1142432907}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1573963774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1573963768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d1accdfb322b2a4ea647eca8e69ad3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHunger: 100
-  maxEnergy: 100
-  hunger: 0
-  energy: 0
-  hungerDrainRate: 1
-  energyDrainRate: 1.5
-  lowHungerThreshold: 25
-  extraEnergyDrain: 2
 --- !u!1001 &1790739773
 PrefabInstance:
   m_ObjectHideFlags: 0
