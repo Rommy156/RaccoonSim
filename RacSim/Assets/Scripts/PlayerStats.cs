@@ -1,5 +1,7 @@
 using UnityEngine;
-// This scripts for food system, rest system and day-night system
+using UnityEngine.UI; // Make sure to import UnityEngine.UI for UI components
+
+// This script handles food system, rest system, and day-night system
 public class PlayerStats : MonoBehaviour
 {
     [Header("Max Values")]
@@ -17,29 +19,41 @@ public class PlayerStats : MonoBehaviour
     public float lowHungerThreshold = 25f;
     public float extraEnergyDrain = 2f;
 
+    [Header("UI Elements")]
+    public Slider hungerSlider; // Reference to the Hunger Slider UI
+    public Slider energySlider; // Reference to the Energy Slider UI
+
+    [Header("Slider Colors")]
+    public Color hungerColor = Color.red; // Set hunger color to red
+    public Color energyColor = Color.yellow; // Set energy color to yellow
+
     void Start()
     {
         hunger = maxHunger;
         energy = maxEnergy;
+
+        // Set the initial color of sliders
+        SetSliderColor();
     }
 
     void Update()
     {
         DrainStats();
         CheckDeath();
+        UpdateUI();
     }
 
+    // Drain stats over time
     void DrainStats()
     {
-        //hunger always drains
+        // Hunger always drains
         hunger -= hungerDrainRate * Time.deltaTime;
 
-        //energy drains faster when hungry
+        // Energy drains faster when hungry
         if (hunger <= lowHungerThreshold)
         {
             energy -= (energyDrainRate + extraEnergyDrain) * Time.deltaTime;
         }
-
         else
         {
             energy -= energyDrainRate * Time.deltaTime;
@@ -49,6 +63,7 @@ public class PlayerStats : MonoBehaviour
         energy = Mathf.Clamp(energy, 0f, maxEnergy);
     }
 
+    // Check if the player died (starved or exhausted)
     void CheckDeath()
     {
         if (hunger <= 0f)
@@ -57,11 +72,11 @@ public class PlayerStats : MonoBehaviour
         }
         if (energy <= 0f)
         {
-            Debug.Log("Player died:Exhausted");
+            Debug.Log("Player died: Exhausted");
         }
     }
 
-    //called by food or garbage objects
+    // Called by food or garbage objects
     public void Eat(float hungerAmount, float energyAmount)
     {
         hunger += hungerAmount;
@@ -71,10 +86,38 @@ public class PlayerStats : MonoBehaviour
         energy = Mathf.Clamp(energy, 0f, maxEnergy);
     }
 
-    //used when resting
+    // Used when resting
     public void RestoreEnergy(float amount)
     {
         energy += amount;
         energy = Mathf.Clamp(energy, 0f, maxEnergy);
+    }
+
+    // Update UI Sliders
+    void UpdateUI()
+    {
+        if (hungerSlider != null)
+        {
+            hungerSlider.value = hunger / maxHunger; // Normalize hunger to 0-1 scale
+        }
+
+        if (energySlider != null)
+        {
+            energySlider.value = energy / maxEnergy; // Normalize energy to 0-1 scale
+        }
+    }
+
+    // Set the colors of the sliders based on preset colors
+    void SetSliderColor()
+    {
+        if (hungerSlider != null)
+        {
+            hungerSlider.fillRect.GetComponent<Image>().color = hungerColor; // Set hunger slider color
+        }
+
+        if (energySlider != null)
+        {
+            energySlider.fillRect.GetComponent<Image>().color = energyColor; // Set energy slider color
+        }
     }
 }
