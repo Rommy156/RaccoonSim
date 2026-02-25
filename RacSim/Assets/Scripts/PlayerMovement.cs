@@ -1,19 +1,20 @@
 using UnityEngine;
 
+
+//not sure check again
+//
+
+[RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Movement Settings")]
     public float moveSpeed = 5f;
     public float runSpeed = 8f;
     public float jumpForce = 6f;
-    public float gravity = -20f;
+    public float gravity = -9.81f;
 
-    [Header("References")]
-    public Transform cameraTransform; // Reference to the Camera's transform
-
+    public Transform cameraTransform;
     private CharacterController controller;
     private Vector3 velocity;
-    private bool isGrounded;
 
     void Start()
     {
@@ -22,51 +23,50 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        isGrounded = controller.isGrounded;
+        HandleMovement();
+        HandleGravity();
+        HandleJump();
+    }
 
-        if (isGrounded && velocity.y < 0)
+    void HandleMovement()
+    {
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+
+        Vector3 inputDir = new Vector3(x, 0f, z);
+
+        if (inputDir.magnitude >= 0.1f)
         {
-            velocity.y = -2f; // Ensure the player sticks to the ground
+            float targetAngle =
+                Mathf.Atan2(inputDir.x, inputDir.z) * Mathf.Rad2Deg
+                + cameraTransform.eulerAngles.y;
+
+            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+
+            bool isRunning = Input.GetKey(KeyCode.LeftShift);
+            float speed = isRunning ? runSpeed : moveSpeed;
+            controller.Move(transform.forward * speed * Time.deltaTime);
+        }
+    }
+
+    void HandleGravity()
+    {
+        if (controller.isGrounded && velocity.y < 0)
+        {
+            velocity.y = -1f;
         }
 
-        MovePlayer(); // Handle the movement
-        Jump(); // Handle the jump
-        ApplyGravity(); // Apply gravity over time
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
     }
 
-    void MovePlayer()
+    void HandleJump()
     {
-        float x = Input.GetAxis("Horizontal"); // Get input for horizontal movement (A/D, Left/Right)
-        float z = Input.GetAxis("Vertical"); // Get input for vertical movement (W/S, Up/Down)
-
-        Vector3 direction = new Vector3(x, 0f, z); // Movement direction
-
-        if (direction.magnitude > 1f)
-            direction.Normalize(); // Normalize if input magnitude is > 1
-
-        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y; // Calculate the direction relative to the camera
-
-        Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward; // Rotate direction based on camera angle
-
-        transform.rotation = Quaternion.Euler(0f, targetAngle, 0f); // Rotate player to face movement direction
-
-        bool isRunning = Input.GetKey(KeyCode.LeftShift); // Check if Left Shift is held to run
-        float speed = isRunning ? runSpeed : moveSpeed; // Set speed based on whether the player is running or not
-
-        controller.Move(moveDir * speed * Time.deltaTime); // Move player
-    }
-
-    void Jump()
-    {
-        if (Input.GetButtonDown("Jump") && isGrounded) // Jump if on the ground
+        if (Input.GetButtonDown("Jump") && controller.isGrounded)
         {
             velocity.y = jumpForce;
+
         }
     }
 
-    void ApplyGravity()
-    {
-        velocity.y += gravity * Time.deltaTime; // Apply gravity over time
-        controller.Move(velocity * Time.deltaTime); // Move the player based on gravity
-    }
 }
