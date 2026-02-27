@@ -1,43 +1,30 @@
 using UnityEngine;
 public class ItemSpawner : MonoBehaviour
 {
-    [Header("Spawn Settings")]
+    //spawn settings
     public GameObject itemPrefab;
-    public int maxItems = 10;
-    public Vector3 spawnAreaSize = new Vector3(20f, 1f, 20f);
-    private int currentItemCount = 0;
+    public float spawnTime = 5f; //spawn intervsl
+    private float timer;
+    public float rangeX = 10f; //spawn area width
+    public float rangeZ = 10f; //depth
 
-    private void Start()
-    {
-        SpawnInitialItems();
-    }
 
-    void SpawnInitialItems()
+    void Update()
     {
-        for (int i = 0; i < maxItems; i++)
+        timer += Time.deltaTime;
+        if (timer >= spawnTime)
         {
             SpawnItem();
+            timer = 0f;
         }
     }
+
     void SpawnItem()
     {
-        Vector3 randomPosition = new Vector3(
-        Random.Range(-spawnAreaSize.x / 2, spawnAreaSize.x / 2),
-        0f,
-        Random.Range(-spawnAreaSize.z / 2, spawnAreaSize.z / 2)
-        );
-        Vector3 spawnPosition = transform.position + randomPosition;
+        float randomX = Random.Range(-rangeX, rangeX);
+        float randomZ = Random.Range(-rangeZ, rangeZ);
+        Vector3 spawnPosition = new Vector3(randomX, 0.5f, randomZ);
         Instantiate(itemPrefab, spawnPosition, Quaternion.identity);
-        currentItemCount++;
     }
-
-    public void itemCollected()
-    {
-        currentItemCount--;
-        if (currentItemCount < maxItems)
-        {
-            SpawnItem();
-        }
-    }
-    
 }
+      
