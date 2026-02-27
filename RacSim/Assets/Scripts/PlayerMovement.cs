@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
+    //movement settings
     public float moveSpeed = 5f;
     public float runSpeed = 8f;
     public float jumpForce = 6f;
@@ -33,18 +34,27 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        Vector3 inputDir = new Vector3(x, 0f, z);
+        Vector3 inputDirection = new Vector3(x, 0f, z);
 
-        if (inputDir.magnitude >= 0.1f)
+        if (inputDirection.magnitude >= 0.1f)
         {
-            float targetAngle =
-                Mathf.Atan2(inputDir.x, inputDir.z) * Mathf.Rad2Deg
-                + cameraTransform.eulerAngles.y;
+            //Normalize input
+            inputDirection.Normalize();
 
-            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
-
+            //calculate direction relative to camera
+            float targetAngle = 
+                Mathf.Atan2(inputDirection.x, inputDirection.z)*Mathf.Rad2Deg
+                +cameraTransform.eulerAngles.y;
+            //smooth rotation 
+            float smoothAngle = Mathf.LerpAngle(
+                transform.eulerAngles.y,
+                targetAngle,
+                10f * Time.deltaTime
+                );
+            transform.rotation = Quaternion.Euler(0f,smoothAngle,0f);
             bool isRunning = Input.GetKey(KeyCode.LeftShift);
             float speed = isRunning ? runSpeed : moveSpeed;
+
             controller.Move(transform.forward * speed * Time.deltaTime);
         }
     }
