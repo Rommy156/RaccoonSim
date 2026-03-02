@@ -1,19 +1,19 @@
 using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
-    [Header("Max Values")]
+    //max values
     public float maxHunger = 100f;
     public float maxEnergy = 100f;
 
-    [Header("Current Values")]
+    //current values
     public float hunger;
     public float energy;
 
-    [Header("Drain Per Second")]
+    //drain per second
     public float hungerDrainRate = 1f;
     public float energyDrainRate = 1.5f;
 
-    [Header("Low Hunger Penalty")]
+    //low hunger penalty
     public float lowHungerThreshold = 25f;
     public float extraEnergyDrain = 2f;
 
