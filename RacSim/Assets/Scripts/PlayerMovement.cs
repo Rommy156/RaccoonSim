@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 
 //not sure check again
@@ -28,35 +28,40 @@ public class PlayerMovement : MonoBehaviour
         HandleGravity();
         HandleJump();
     }
-
     void HandleMovement()
     {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        Vector3 inputDirection = new Vector3(x, 0f, z);
+        // ✅ Get camera directions but flatten them
+        Vector3 camForward = cameraTransform.forward;
+        Vector3 camRight = cameraTransform.right;
 
-        if (inputDirection.magnitude >= 0.1f)
+        camForward.y = 0f;
+        camRight.y = 0f;
+
+        camForward.Normalize();
+        camRight.Normalize();
+
+        // ✅ Build move direction
+        Vector3 move = camForward * z + camRight * x;
+
+        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+        float speed = isRunning ? runSpeed : moveSpeed;
+
+        // ✅ Rotate toward movement direction
+        if (move.magnitude >= 0.1f)
         {
-            //Normalize input
-            inputDirection.Normalize();
-
-            //calculate direction relative to camera
-            float targetAngle = 
-                Mathf.Atan2(inputDirection.x, inputDirection.z)*Mathf.Rad2Deg
-                +cameraTransform.eulerAngles.y;
-            //smooth rotation 
-            float smoothAngle = Mathf.LerpAngle(
-                transform.eulerAngles.y,
-                targetAngle,
+            Quaternion targetRotation = Quaternion.LookRotation(move);
+            transform.rotation = Quaternion.Lerp(
+                transform.rotation,
+                targetRotation,
                 10f * Time.deltaTime
-                );
-            transform.rotation = Quaternion.Euler(0f,smoothAngle,0f);
-            bool isRunning = Input.GetKey(KeyCode.LeftShift);
-            float speed = isRunning ? runSpeed : moveSpeed;
-
-            controller.Move(transform.forward * speed * Time.deltaTime);
+            );
         }
+
+        // ✅ Move
+        controller.Move(move.normalized * speed * Time.deltaTime);
     }
 
     void HandleGravity()
