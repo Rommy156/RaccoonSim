@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public int maxDays = 5;
     [Header("References")]
     public PlayerStats playerStats;
+    
 
     void Update()
     {
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
             return;
         currentDay++;
         Debug.Log("Day: " + currentDay);
+        
 
     }
 
