@@ -1,22 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SkillTree : MonoBehaviour
 {
-<<<<<<< Updated upstream
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-=======
     public PlayerStats playerStats;
+    public PlayerController playerController;
     //skill points
     public int skillPoints = 0;
     //skill levels
@@ -24,13 +11,14 @@ public class SkillTree : MonoBehaviour
     public int energyEfficiencyLevel = 0;
     public int movementBoostLevel = 0;
     //skill settings
-    public float hungerDrainReduction = 0.2f;
-    public float energyDrainReduction = 0.2f;
+    public float hungerDrainReductionPercent = 0.1f;
+    public float energyDrainReductionPercent = 0.1f;
     public float movementSpeedIncrease = 1f;
 
     public void AddSkillPoint(int amount)
     {
         skillPoints += amount;
+        Debug.Log("Skill Points:"+ skillPoints);
        
     }
     public void UpgradeHungerEfficiency()
@@ -38,21 +26,25 @@ public class SkillTree : MonoBehaviour
         if (skillPoints <= 0) return;
         hungerEfficiencyLevel++;
         skillPoints--;
-        playerStats.hungerDrainRate -= hungerDrainReduction;
-        playerStats.hungerDrainRate = Mathf.Max(0.1f, playerStats.hungerDrainRate);
+        playerStats.hungerDrainRate *= (1f-hungerDrainReductionPercent);
+        
     }
     public void UpgradeEnergyEfficiency()
     {
         if (skillPoints <= 0) return;
         energyEfficiencyLevel++;
         skillPoints--;
-        playerStats.energyDrainRate -= energyDrainReduction;
-        playerStats.energyDrainRate=Mathf.Max(0.1f,playerStats.energyDrainRate);
+        playerStats.energyDrainRate *= (1f - energyDrainReductionPercent);
+        
     }
-    public void UpgradeMovement(PlayerMovement movement)
+    public void UpgradeMovement()
     {
         if (skillPoints <= 0) return;
         movementBoostLevel++;
->>>>>>> Stashed changes
+        skillPoints--;
+
+        playerController.moveSpeed += movementSpeedIncrease;
+    
+
     }
 }
