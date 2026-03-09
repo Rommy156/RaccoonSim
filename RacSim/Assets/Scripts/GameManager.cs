@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public int maxDays = 5;
     [Header("References")]
     public PlayerStats playerStats;
+    public SkillTree skillTree;
     
 
     void Update()
@@ -48,6 +49,12 @@ public class GameManager : MonoBehaviour
         if (!isGameActive)
             return;
         currentDay++;
+
+        //reward skill points
+        if (skillTree != null)
+        {
+            skillTree.AddSkillPoint(1);
+        }
         Debug.Log("Day: " + currentDay);
         
 
