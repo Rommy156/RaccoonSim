@@ -1,5 +1,7 @@
+//check again
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SleepZone : MonoBehaviour
@@ -9,18 +11,25 @@ public class SleepZone : MonoBehaviour
     public float energyRestoreAmount = 100f;
     void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Rest();
-            }
+            Rest();
         }
     }
+
     void Rest()
     {
-        playerStats.RestoreEnergy(energyRestoreAmount); //for restore energy
-        gameManager.AdvanceDay();
-        Debug.Log("You rested.Next day!");
+        if (playerStats != null)
+        {
+            playerStats.RestoreEnergy(energyRestoreAmount); //for restore energy
+        }
+
+        if (gameManager != null)
+        {
+            gameManager.AdvanceDay();
+        }
+
+        Debug.Log("You rested. Next day!");
+
     }
 }
