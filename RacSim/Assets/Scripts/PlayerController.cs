@@ -23,12 +23,18 @@ public class PlayerController : MonoBehaviour
     //reference to groundLayer mask
     public LayerMask groundLayer;
 
+    //store animator component
+    private Animator anim;
+
 
     // Start is called before the first frame update
     void Start()
     {
         //initialize rigidBody component
         rb = GetComponent<Rigidbody>();
+
+        //initialize animator
+        anim = GetComponent<Animator>();
 
         //set initial jump direction
         jumpDirection = Vector3.up;
@@ -60,16 +66,23 @@ public class PlayerController : MonoBehaviour
         //create temporary floates to store Horizontal and Vertical input
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-        //*explanation *calculate variable, then set temporary vector to whatever transform.forward is (z-axis)
-        //multiplied by the (v) verticacl axis (-1 ,0 ,1 ) multiplied by the move speed
-        //then add it by transform.right(x-axis) by (-1 ,0 ,1 ) and strafeSpeed, which is slower
 
-        Vector3.Normalize(movement);
+        
         movement = (transform.forward * v * moveSpeed) + (transform.right * h * strafeSpeed);
-
+        movement = Vector3.Normalize(movement);
         //move with the RigidBody
         //your current position + answer to the calculation above and muliplied with Time.DeltaTime
         rb.MovePosition(transform.position + movement * Time.deltaTime);
+        
+        //check if player is moving
+        if (movement.magnitude > 0.01f)
+        {
+            anim.SetBool("isMoving", true);
+        }
+        else
+        {
+            anim.SetBool("isMoving", false);
+        }
     }
 
     bool CheckGround()

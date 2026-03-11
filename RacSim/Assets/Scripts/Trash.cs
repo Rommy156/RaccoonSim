@@ -1,17 +1,13 @@
+//Allen Adepoju
+//000948096
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class Trash : MonoBehaviour
+public class TrashAmount : MonoBehaviour
 {
-    public float hungerIncrease = 5f;
+    public float hungerIncrease = 10f;
 
-    private ObjectSpawner spawner;
-    public GameObject trashPrefab;
-    void Start()
-    {
-        spawner = FindObjectOfType<ObjectSpawner>();
-    }
 
     public void OnTriggerEnter(Collider other)
     {
@@ -19,14 +15,7 @@ public class Trash : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            if (spawner != null)
-            {
-                spawner.OnTrashCollected();
-                Debug.Log("+1");
-
-            }
-            gameObject.SetActive(false);
-
+            
             // Add hunger increase to the player's hunger system
             if (hunger != null)
             {
