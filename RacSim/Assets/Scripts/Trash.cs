@@ -1,62 +1,27 @@
+//Allen Adepoju
+//000948096
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
-public class Trash : MonoBehaviour
+public class TrashAmount : MonoBehaviour
 {
-    public float hungerIncrease = 5f;
+    public float hungerIncrease = 10f;
 
-    private ObjectSpawner spawner;
-    public GameObject LootPlaceholderPrefab;
 
-    private void Start()
+    public void OnTriggerEnter(Collider other)
     {
-        spawner = FindObjectOfType<ObjectSpawner>();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!other.CompareTag("Player")) return;
-
         HungerSystem hunger = other.GetComponent<HungerSystem>();
 
-        if (spawner != null)
+        if (other.CompareTag("Player"))
         {
-            spawner.OnTrashCollected();
-            Debug.Log("+1");
+            
+            // Add hunger increase to the player's hunger system
+            if (hunger != null)
+            {
+                hunger.AddHunger(hungerIncrease);
+                Destroy(gameObject);
+            }
         }
-
-        if (hunger != null)
-        {
-            hunger.AddHunger(hungerIncrease);
-        }
-
-        if (LootPlaceholderPrefab != null)
-        {
-            GameObject spawnedLoot = Instantiate(
-            LootPlaceholderPrefab,
-            transform.position + Vector3.up * 2f,
-            Quaternion.identity
-        );
-
-        Rigidbody rb = spawnedLoot.GetComponent<Rigidbody>();
-
-        if (rb != null)
-        {
-            Vector3 randomSide = new Vector3(
-                Random.Range(-1f, 1f),
-                0f,
-                Random.Range(-1f, 1f)
-            ).normalized;
-
-            Vector3 launchVelocity = Vector3.up * 5f + randomSide * 2f;
-            rb.velocity = launchVelocity;
-        }
-        
-        }
-        else
-        {
-            Debug.LogWarning("LootPlaceholderPrefab is not assigned on " + gameObject.name);
-        }
-
-        Destroy(gameObject);
     }
 }
