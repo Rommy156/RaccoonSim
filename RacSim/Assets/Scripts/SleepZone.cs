@@ -1,35 +1,29 @@
-//check again
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+//Check again
 using UnityEngine;
 
 public class SleepZone : MonoBehaviour
 {
-    public GameManager gameManager;
-    public PlayerStats playerStats;
-    public float energyRestoreAmount = 100f;
+    private GameManager gameManager;
+
+    void Start()
+    {
+        gameManager = GameManager.Instance; 
+    }
+
     void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
         {
-            Rest();
+            TrySleep();
         }
     }
 
-    void Rest()
+    void TrySleep()
     {
-        if (playerStats != null)
-        {
-            playerStats.RestoreEnergy(energyRestoreAmount); //for restore energy
-        }
+        if (gameManager == null) return;
 
-        if (gameManager != null)
-        {
-            gameManager.AdvanceDay();
-        }
+        Debug.Log("You entered the sleep zone. Saving artifacts and ending the night.");
 
-        Debug.Log("You rested. Next day!");
-
+        gameManager.EndNight(true);
     }
 }

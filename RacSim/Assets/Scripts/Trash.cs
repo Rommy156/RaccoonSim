@@ -1,38 +1,46 @@
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class Trash : MonoBehaviour
 {
-    public float hungerIncrease = 5f;
-
+    public GameObject artifactPrefab; 
+    public GameObject foodPrefab;       
+    [Range(0, 100)] public float artifactDropChance = 15f; 
     private ObjectSpawner spawner;
-    public GameObject trashPrefab;
+    private bool isLooted = false;
+
     void Start()
     {
         spawner = FindObjectOfType<ObjectSpawner>();
     }
 
-    public void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        HungerSystem hunger = other.GetComponent<HungerSystem>();
-
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !isLooted)
         {
-            if (spawner != null)
-            {
-                spawner.OnTrashCollected();
-                Debug.Log("+1");
-
-            }
-            gameObject.SetActive(false);
-
-            // Add hunger increase to the player's hunger system
-            if (hunger != null)
-            {
-                hunger.AddHunger(hungerIncrease);
-                Destroy(gameObject);
-            }
+            isLooted = true;
+            Loot();
         }
     }
+
+    void Loot()
+    {
+        float roll = Random.Range(0f, 100f);
+        GameObject itemToSpawn = (roll <= artifactDropChance) ? artifactPrefab : foodPrefab;
+
+        if (itemToSpawn != null)
+        {
+            Instantiate(itemToSpawn, transform.position + Vector3.up * 0.5f, Quaternion.identity);
+        }
+
+        if (spawner != null)
+        {
+            spawner.OnTrashCollected();
+        }
+
+        Debug.Log(itemToSpawn.name + " spawned from trash!");
+
+        Destroy(gameObject);
+
+    }
+
 }

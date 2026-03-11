@@ -1,74 +1,42 @@
 //Allen Adepoju
 //000948096
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 7f;
-    public float strafeSpeed = 4f;
-
-    private Vector3 movement;
-    private Rigidbody rb;
-
-    private Vector3 jumpDirection;
-    public float jumpHeight = 4f;
-
-    public bool isGrounded;
+    public float rotateSpeed = 10f;
+    public float jumpHeight = 5f;
     public LayerMask groundLayer;
 
+    private Rigidbody rb;
     private ClimbControllerRB climb;
+    private Transform camTransform;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        jumpDirection = Vector3.up;
         climb = GetComponent<ClimbControllerRB>();
-    }
-
-    void Update()
-    {
-        if (climb != null && climb.IsClimbing) return;
-
-        isGrounded = CheckGround();
-
-        if (isGrounded)
-        {
-            Jump();
-        }
-    }
-
-    void Jump()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            rb.AddForce(jumpDirection * jumpHeight, ForceMode.Impulse);
-        }
+        camTransform = Camera.main.transform;
+        rb.freezeRotation = true; 
     }
 
     private void FixedUpdate()
     {
         if (climb != null && climb.IsClimbing) return;
 
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
+        Vector3 direction = new Vector3(h, 0, v).normalized;
 
-        Vector3 forwardMove = transform.forward * v * moveSpeed;
-        Vector3 strafeMove = transform.right * h * strafeSpeed;
-
-        movement = forwardMove + strafeMove;
-
-        rb.MovePosition(rb.position + movement * Time.fixedDeltaTime);
-    }
-
-    bool CheckGround()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 3f, groundLayer))
+        if (direction.magnitude >= 0.1f)
         {
-            return true;
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + camTransform.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotateSpeed, 0.1f);
+            rb.MoveRotation(Quaternion.Euler(0f, targetAngle, 0f));
+            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            rb.MovePosition(rb.position + moveDir.normalized * moveSpeed * Time.fixedDeltaTime);
         }
-        return false;
     }
 }
