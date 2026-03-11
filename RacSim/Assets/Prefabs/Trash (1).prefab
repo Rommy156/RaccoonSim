@@ -192,4 +192,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hungerIncrease: 5
-  trashPrefab: {fileID: 3770505950668954574}
+  LootPlaceholderPrefab: {fileID: 4587599571838182371, guid: 976f27df01d127449b991dd09d9fb760,
+    type: 3}
