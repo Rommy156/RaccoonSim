@@ -1,10 +1,10 @@
 using UnityEngine;
+
 public class ItemEffect : MonoBehaviour
 {
     public enum ItemType { Consumable, Artifact }
     public ItemType type;
     public string itemName;
-    //stat rewards 
     public float hungerBonus = 20f;
     public float energyBonus = 15f;
 
@@ -24,7 +24,8 @@ public class ItemEffect : MonoBehaviour
             if (stats != null)
             {
                 stats.Eat(hungerBonus, energyBonus);
-                Debug.Log(itemName + " consumed! +Hunger, +Energy");
+                //dynamically showing values - green color
+                Debug.Log($"<color=green>[ITEM]</color> {itemName} consumed! +{hungerBonus} Hunger, +{energyBonus} Energy.");
             }
         }
         else if (type == ItemType.Artifact)
@@ -32,10 +33,11 @@ public class ItemEffect : MonoBehaviour
             if (GameManager.Instance != null)
             {
                 GameManager.Instance.AddArtifact();
-                Debug.Log(itemName + " has been added to the journal!");
+                //artifacts - gold color
+                Debug.Log($"<color=gold>[ARTIFACT]</color> {itemName} has been added to the journal!");
             }
         }
-
+        //clean up the object from the scene
         Destroy(gameObject);
 
     }
