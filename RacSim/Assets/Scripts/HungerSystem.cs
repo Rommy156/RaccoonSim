@@ -55,6 +55,8 @@ public class HungerSystem : MonoBehaviour
     }
     void LoadGameOver()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("GameOver");
     }
 }
