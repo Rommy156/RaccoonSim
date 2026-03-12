@@ -1,31 +1,26 @@
-﻿//Allen Adepoju
-//000948096
-using UnityEngine;
+﻿using UnityEngine;
 
 public class UseBin : MonoBehaviour
 {
-    private GameObject OB;
+    public GameObject foodPrefab;
+    public GameObject artifactPrefab;
 
-    public GameObject objToActivate;
-    public GameObject[] items;
+    [Range(0f, 1f)]
+    public float artifactDropChance = 0.2f;
 
     private bool inReach;
-    private bool hasSpawned = false;
+    private bool opened = false;
 
-    void Awake()
-    {
-        OB = this.gameObject;
-
-        if (objToActivate != null)
-            objToActivate.SetActive(false);
-    }
+    public GameObject interactUI;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             inReach = true;
-            objToActivate.SetActive(true);
+
+            if (interactUI != null)
+                interactUI.SetActive(true);
         }
     }
 
@@ -34,42 +29,34 @@ public class UseBin : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             inReach = false;
-            objToActivate.SetActive(false);
+
+            if (interactUI != null)
+                interactUI.SetActive(false);
         }
     }
 
     void Update()
     {
-        if (inReach && Input.GetKeyDown(KeyCode.E) && !hasSpawned)
+        if (inReach && Input.GetKeyDown(KeyCode.E) && !opened)
         {
-            hasSpawned = true;
+            opened = true;
 
-            OB.GetComponent<Animator>().SetBool("isOpen", true);
+            SpawnLoot();
 
-            for (int i = 0; i < 5; i++)
-            {
-                int randomIndex = Random.Range(0, items.Length);
-
-                Vector3 spawnPosition = transform.position + transform.forward * 5f;
-
-                GameObject item = Instantiate(items[randomIndex], spawnPosition, Random.rotation);
-
-                Rigidbody rb = item.GetComponent<Rigidbody>();
-
-                if (rb != null)
-                {
-                    Vector3 force =
-                        transform.forward * Random.Range(1f, 3f) +
-                        Vector3.up * Random.Range(-2f, 3f) +
-                        transform.right * Random.Range(-3f, 3f);
-
-                    rb.AddForce(force, ForceMode.Impulse);
-                }
-            }
-
-            objToActivate.SetActive(false);
-
-            OB.GetComponent<BoxCollider>().enabled = false;
+            if (interactUI != null)
+                interactUI.SetActive(false);
         }
+    }
+
+    void SpawnLoot()
+    {
+        GameObject item;
+
+        if (Random.value < artifactDropChance)
+            item = artifactPrefab;
+        else
+            item = foodPrefab;
+
+        Instantiate(item, transform.position + Vector3.up * 1f, Quaternion.identity);
     }
 }

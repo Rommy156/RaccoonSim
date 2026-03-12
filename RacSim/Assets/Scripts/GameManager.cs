@@ -1,22 +1,17 @@
 using UnityEngine;
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
     public bool isGameActive = true;
     public bool hasWon = false;
     public int currentDay = 1;
 
-    public float dayTimer = 0f;
-    public float maxDayDuration = 300f;
-
     public int artifactsInJournal = 0;
     public int artifactsHeldThisNight = 0;
     public int totalArtifactsRequired = 10;
-    public float finalScore = 0f;
 
     public PlayerStats playerStats;
-    public SkillTree skillTree;
     public Transform spawnPoint;
     public GameObject playerObject;
 
@@ -30,20 +25,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (!isGameActive || hasWon) return;
+        if (!isGameActive) return;
 
-        dayTimer += Time.deltaTime;
-
-        CheckStats();
-
-        if (dayTimer >= maxDayDuration)
-        {
-            EndNight(true);
-        }
-    }
-
-    void CheckStats()
-    {
         if (playerStats != null && playerStats.IsDead())
         {
             HandlePlayerDeath();
@@ -52,11 +35,10 @@ public class GameManager : MonoBehaviour
 
     public void HandlePlayerDeath()
     {
-        Debug.Log("Energy/Hunger depleted! Artifacts lost.");
+        Debug.Log("Player died. Artifacts lost.");
 
         artifactsHeldThisNight = 0;
-
-        EndNight(false);
+        ResetPlayerToSpawn();
     }
 
     public void EndNight(bool savedArtifacts)
@@ -64,23 +46,12 @@ public class GameManager : MonoBehaviour
         if (savedArtifacts)
         {
             artifactsInJournal += artifactsHeldThisNight;
-            Debug.Log("Artifacts saved to journal.");
         }
 
         artifactsHeldThisNight = 0;
-
-        dayTimer = 0f;
         currentDay++;
 
-        if (skillTree != null)
-            skillTree.AddSkillPoint(1);
-
         ResetPlayerToSpawn();
-
-        if (artifactsInJournal >= totalArtifactsRequired)
-        {
-            WinGame();
-        }
     }
 
     void ResetPlayerToSpawn()
@@ -99,23 +70,11 @@ public class GameManager : MonoBehaviour
 
         if (playerStats != null)
             playerStats.ResetStats();
-
-        Debug.Log("Returned to spawn. Day: " + currentDay);
     }
 
     public void AddArtifact()
     {
         artifactsHeldThisNight++;
-        Debug.Log("Artifact found! Total this night: " + artifactsHeldThisNight);
-    }
-
-    void WinGame()
-    {
-        hasWon = true;
-        isGameActive = false;
-
-        finalScore = 1000f / currentDay;
-
-        Debug.Log("YOU WIN! Score: " + finalScore);
+        Debug.Log("Artifact collected. Total this night: " + artifactsHeldThisNight);
     }
 }
