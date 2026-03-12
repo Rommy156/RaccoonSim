@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         CheckStats();
         if (dayTimer >= maxDayDuration)
         {
-            EndNight(true); // Güvenli dönü?
+            EndNight(true); 
         }
     }
 
