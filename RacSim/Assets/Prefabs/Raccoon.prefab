@@ -289,6 +289,7 @@ GameObject:
   - component: {fileID: 5023122081031967538}
   - component: {fileID: 3881763170905881275}
   - component: {fileID: 8134351672304436690}
+  - component: {fileID: -4551516535354808708}
   m_Layer: 6
   m_Name: Raccoon
   m_TagString: Player
@@ -379,6 +380,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.82033736, y: 0.48273748, z: 0.29406375}
   m_Center: {x: 0.052203566, y: 0.25910404, z: 0.010019667}
+--- !u!95 &-4551516535354808708
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984274346603480801}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a20e0603663bead41ba97b5bdb581f2d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1330316345338060481
 GameObject:
   m_ObjectHideFlags: 0
