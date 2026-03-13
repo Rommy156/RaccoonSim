@@ -50,7 +50,7 @@ public class UseBin : MonoBehaviour
             {
                 int randomIndex = Random.Range(0, items.Length);
 
-                Vector3 spawnPosition = transform.position + transform.forward * 5f;
+                Vector3 spawnPosition = transform.position + transform.up;
 
                 GameObject item = Instantiate(items[randomIndex], spawnPosition, Random.rotation);
 

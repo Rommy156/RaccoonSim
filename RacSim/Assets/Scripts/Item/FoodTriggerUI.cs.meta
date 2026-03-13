@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 669365104e4ec674ab24f04f614d0fd1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - infoPanel: {fileID: 7504615100821229192, guid: 7bf4bb6b67a6b3f43bf4c08f10ac9568,
+      type: 3}
+  - titleText: {instanceID: 0}
+  - hungerText: {instanceID: 0}
+  - pointsText: {instanceID: 0}
+  - instructionText: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
