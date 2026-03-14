@@ -1046,7 +1046,7 @@ Transform:
   m_GameObject: {fileID: 484739699}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 49.3, y: 0, z: -49.600002}
+  m_LocalPosition: {x: 49.3, y: 0, z: -48.32}
   m_LocalScale: {x: 100.2, y: 15.054011, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2426,7 +2426,7 @@ Transform:
   m_GameObject: {fileID: 1079812297}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.71067035, z: -0, w: 0.7035252}
-  m_LocalPosition: {x: 100.5, y: 0, z: 0.5}
+  m_LocalPosition: {x: 98.54, y: 0, z: 0.48}
   m_LocalScale: {x: 103.8, y: 15.054011, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3430,7 +3430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba3f0ffbc4b8d1c49b57d429a02c7ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 30.3
+  moveSpeed: 41.8
   strafeSpeed: 10.07
   jumpHeight: 4
   isGrounded: 0
@@ -4610,6 +4610,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3084048237745651340, guid: 0991477af2e5e54479cafe93f0532774,
+        type: 3}
+      propertyPath: hungerRestored
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 4697306498096191860, guid: 0991477af2e5e54479cafe93f0532774,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5299,6 +5304,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8544296582586840655, guid: f978ee12cf785f943b4441e9a2095c57,
+        type: 3}
+      propertyPath: hungerRestored
+      value: 25.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5461,6 +5471,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3710761442572776097, guid: ed1c0581a0b6e564782265d9fc8372d9,
+        type: 3}
+      propertyPath: hungerRestored
+      value: 12.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4063650300304018815, guid: ed1c0581a0b6e564782265d9fc8372d9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6106,6 +6121,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Donut
       objectReference: {fileID: 0}
+    - target: {fileID: 4384817016772384956, guid: cea17c8035dd37045b53033412da29c9,
+        type: 3}
+      propertyPath: hungerRestored
+      value: 14.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7269607980823018383, guid: cea17c8035dd37045b53033412da29c9,
         type: 3}
       propertyPath: infoPanel
@@ -6272,6 +6292,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1567153106741874386, guid: 42bd64ed08e6b5047be37335d8977c39,
+        type: 3}
+      propertyPath: hungerRestored
+      value: 21.09
+      objectReference: {fileID: 0}
     - target: {fileID: 6547846337403327898, guid: 42bd64ed08e6b5047be37335d8977c39,
         type: 3}
       propertyPath: m_Name
