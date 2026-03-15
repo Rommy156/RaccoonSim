@@ -9,6 +9,8 @@ public class UseBin : MonoBehaviour
     public GameObject objToActivate;
     public GameObject[] items;
 
+    public ArtifactPickup artifactPrefab;
+
     private bool inReach;
     private bool hasSpawned = false;
 
@@ -48,6 +50,16 @@ public class UseBin : MonoBehaviour
 
             for (int i = 0; i < 5; i++)
             {
+                if (Random.value < 0.4f) // 40% chance
+                {
+                    ArtifactPickup artifact = Instantiate(artifactPrefab);
+
+                    artifact.transform.position = transform.position + transform.up;
+
+                    artifact.OnArtifactCollected.AddListener(
+                        FindObjectOfType<ArtifactManager>().AddArtifact
+                    );
+                }
                 int randomIndex = Random.Range(0, items.Length);
 
                 Vector3 spawnPosition = transform.position + transform.up;
@@ -66,6 +78,8 @@ public class UseBin : MonoBehaviour
                     rb.AddForce(force, ForceMode.Impulse);
                 }
             }
+
+            
 
             objToActivate.SetActive(false);
 

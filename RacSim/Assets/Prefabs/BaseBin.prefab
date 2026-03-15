@@ -146,6 +146,8 @@ MonoBehaviour:
   - {fileID: 2191706752390823058, guid: cea17c8035dd37045b53033412da29c9, type: 3}
   - {fileID: 7319150150303874151, guid: ed1c0581a0b6e564782265d9fc8372d9, type: 3}
   - {fileID: 1276315004648896788, guid: f978ee12cf785f943b4441e9a2095c57, type: 3}
+  artifactPrefab: {fileID: 7127932033258545986, guid: f145f9ec2aac84e47b4380dbf6d02610,
+    type: 3}
 --- !u!1001 &2883240374212952743
 PrefabInstance:
   m_ObjectHideFlags: 0
