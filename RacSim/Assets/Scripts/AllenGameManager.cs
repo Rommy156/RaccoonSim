@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class AllenGameManager : MonoBehaviour
 {
+    [Header("Artifact System")]
+    public ArtifactManager artifactManager;
+    public GameObject artifactItems;
+
     public static AllenGameManager Instance;
 
     public int collectedItems = 0;
@@ -15,6 +19,16 @@ public class AllenGameManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        foreach (Transform child in artifactItems.transform)
+        {
+            ArtifactPickup artifact = child.GetComponent<ArtifactPickup>();
+
+            artifact.OnArtifactCollected.AddListener(artifactManager.AddArtifact);
+        }
+
+    }
     public void AddItem()
     {
         collectedItems++;
