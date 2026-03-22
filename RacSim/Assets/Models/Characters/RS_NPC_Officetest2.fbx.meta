@@ -51,7 +51,8 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'LeftFoot' not found\n"
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -59,7 +60,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -117,7 +118,107 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: RS_NPC_Officetest2(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Armature
+      parentName: RS_NPC_Officetest2(Clone)
+      position: {x: -0, y: 0.8114584, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 33.365253, y: 33.365253, z: 33.365253}
+    - name: Torso
+      parentName: Armature
+      position: {x: -0, y: 0, z: -0.006814319}
+      rotation: {x: 0.7071068, y: -0.00000008429372, z: -0.0000000842937, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head
+      parentName: Torso
+      position: {x: -0, y: 0.019845264, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head_end
+      parentName: Head
+      position: {x: -0, y: 0.017808696, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ArmL
+      parentName: Torso
+      position: {x: -0.00015955651, y: 0.019157557, z: -0.0060377936}
+      rotation: {x: 0.7021393, y: -0.08793493, z: 0.7017537, w: -0.082520336}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.9999997}
+    - name: ArmL_end
+      parentName: ArmL
+      position: {x: -0, y: 0.019914296, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ArmR
+      parentName: Torso
+      position: {x: -0.00015955365, y: 0.019157557, z: 0.0060448353}
+      rotation: {x: 0.69593376, y: 0.119187795, z: 0.6990848, w: 0.11291996}
+      scale: {x: 1, y: 0.99999994, z: 1.0000005}
+    - name: ArmR_end
+      parentName: ArmR
+      position: {x: -0, y: 0.019914296, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LegR
+      parentName: Armature
+      position: {x: -0, y: -0.0046646697, z: -0.0076299594}
+      rotation: {x: 0.50000006, y: -0.50000006, z: 0.49999997, w: -0.49999994}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LegR_end
+      parentName: LegR
+      position: {x: -0, y: 0.016725022, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LegL
+      parentName: Armature
+      position: {x: -0, y: 0.0046646697, z: -0.0076299594}
+      rotation: {x: 0.50000006, y: -0.50000006, z: 0.49999997, w: -0.49999994}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LegL_end
+      parentName: LegL
+      position: {x: -0, y: 0.016725022, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cone.001
+      parentName: RS_NPC_Officetest2(Clone)
+      position: {x: -0.00028904114, y: 0.2705471, z: -0.14822704}
+      rotation: {x: -0.70710677, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 31.848675, y: 31.848675, z: 31.848675}
+    - name: Cone.002
+      parentName: RS_NPC_Officetest2(Clone)
+      position: {x: -0.00028904114, y: 0.2705471, z: 0.148886}
+      rotation: {x: -0.70710677, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 31.848675, y: 31.848675, z: 31.848675}
+    - name: Cylinder
+      parentName: RS_NPC_Officetest2(Clone)
+      position: {x: -0, y: 0.8901679, z: -0.3291369}
+      rotation: {x: -0.58397263, y: 0.003650601, z: 0.002740114, w: 0.8117605}
+      scale: {x: 57.20281, y: 40.66496, z: 99.99999}
+    - name: Cylinder.001
+      parentName: RS_NPC_Officetest2(Clone)
+      position: {x: -0, y: 0.8901679, z: 0.3291369}
+      rotation: {x: -0.8117687, y: 0, z: 0, w: 0.58397907}
+      scale: {x: 57.202805, y: 40.664963, z: 99.99999}
+    - name: Grid
+      parentName: RS_NPC_Officetest2(Clone)
+      position: {x: -0.30139467, y: 1.4628744, z: 0}
+      rotation: {x: 0.5, y: 0.5, z: -0.5, w: -0.49999997}
+      scale: {x: 33.26855, y: 33.26855, z: 33.26855}
+    - name: Head
+      parentName: RS_NPC_Officetest2(Clone)
+      position: {x: -0.00028908093, y: 1.489421, z: 0.00032948185}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 27.317623, y: 27.317623, z: 27.317623}
+    - name: Torso
+      parentName: RS_NPC_Officetest2(Clone)
+      position: {x: -0.00028904114, y: 0.88370585, z: 0.00032948185}
+      rotation: {x: -0.70710677, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 31.848675, y: 31.848675, z: 31.848675}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -128,11 +229,11 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
