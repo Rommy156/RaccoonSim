@@ -7,14 +7,17 @@ public class ItemPickup : MonoBehaviour
     public GameObject infoPanel; // UI panel above item
     private bool playerInside = false;
     private FoodItem food;
-    private HungerSystem hungerSystem;
+    private PlayerStats playerStats;
+    public float hungerRestored;
+    public float energyRestored;
+
 
     void Start()
     {
         food = GetComponent<FoodItem>();
 
-        // Find HungerSystem in scene
-        hungerSystem = FindObjectOfType<HungerSystem>();
+        // Find PlayerStats in scene
+        playerStats = FindObjectOfType<PlayerStats>();
 
         if (infoPanel != null)
             infoPanel.SetActive(false);
@@ -52,10 +55,10 @@ public class ItemPickup : MonoBehaviour
 
     void EatFood()
     {
-        // Add hunger to HungerSystem
-        if (food != null && hungerSystem != null)
+        // Add hunger to PlayerStats
+        if (food != null && playerStats != null)
         {
-            hungerSystem.AddHunger(food.hungerRestored);
+            playerStats.Eat (food.hungerRestored, 0f);
         }
 
         if (infoPanel != null)
