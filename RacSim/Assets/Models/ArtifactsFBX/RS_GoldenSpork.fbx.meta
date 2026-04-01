@@ -3,7 +3,17 @@ guid: 3063b64e82ea404469ad4307612c43ca
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: fb25aed138c15514cbcb1c2f57786337, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: RS_GoldenSpork_Mat
+    second: {fileID: 2800000, guid: e1a2f6b768334d140839c67d59c87e43, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
