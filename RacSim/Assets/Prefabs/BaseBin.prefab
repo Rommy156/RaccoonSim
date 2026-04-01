@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4510970074306149419}
   - component: {fileID: 8816111551796941589}
   - component: {fileID: 5664914193096077997}
+  - component: {fileID: 6334788385325811283}
   m_Layer: 0
   m_Name: BaseBin
   m_TagString: Untagged
@@ -78,7 +79,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.6794957, y: 0.7, z: 0.71208936}
-  m_Center: {x: 0.002716124, y: 0.4, z: 0.01358065}
+  m_Center: {x: 0.002716124, y: 0.4, z: 0}
 --- !u!54 &4510970074306149419
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -148,6 +149,29 @@ MonoBehaviour:
   - {fileID: 1276315004648896788, guid: f978ee12cf785f943b4441e9a2095c57, type: 3}
   artifactPrefab: {fileID: 7127932033258545986, guid: f145f9ec2aac84e47b4380dbf6d02610,
     type: 3}
+--- !u!136 &6334788385325811283
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8067150208534122523}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.32
+  m_Height: 0.53
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.76, z: 0}
 --- !u!1001 &2883240374212952743
 PrefabInstance:
   m_ObjectHideFlags: 0

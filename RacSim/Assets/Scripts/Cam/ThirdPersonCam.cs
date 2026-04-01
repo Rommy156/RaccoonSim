@@ -12,12 +12,13 @@ public class ThirdPersonCam : MonoBehaviour
 
     public float rotationSpeed;
 
+
     public GameObject thirdPersonCam;
 
     public CameraStyle currentStyle;
     public enum CameraStyle
     {
-        Basic
+        Basic,
     }
 
     private void Start()
@@ -28,12 +29,13 @@ public class ThirdPersonCam : MonoBehaviour
 
     private void Update()
     {
+        
         // rotate orientation
         Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
         orientation.forward = viewDir.normalized;
 
         // roate player object
-        if(currentStyle == CameraStyle.Basic)
+        if(currentStyle == CameraStyle.Basic )
         {
             float horizontalInput = Input.GetAxis("Horizontal");
             float verticalInput = Input.GetAxis("Vertical");
@@ -43,7 +45,7 @@ public class ThirdPersonCam : MonoBehaviour
                 playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
         }
 
-       
     }
 
+   
 }

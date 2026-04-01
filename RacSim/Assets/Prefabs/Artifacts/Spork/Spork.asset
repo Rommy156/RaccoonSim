@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   artifactName: Golden Spork
   icon: {fileID: 21300000, guid: edc476db30c9cd14696dce20ac689c13, type: 3}
-  dropRate: 0.478
+  dropRate: 0.051
   description: 
