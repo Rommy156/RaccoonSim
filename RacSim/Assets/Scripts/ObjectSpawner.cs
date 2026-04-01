@@ -1,3 +1,5 @@
+//Allen Adepoju
+//000948096
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -42,8 +44,8 @@ public class ObjectSpawner : MonoBehaviour
         counterText.text = "Counter: " + counter.ToString();
     }
 
-   void GameOver()
+    void GameOver()
     {
-        
+
     }
 }

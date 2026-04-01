@@ -1,17 +1,23 @@
+//Allen Adepoju
+//000948096
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HungerSystem : MonoBehaviour
 {
     public Slider hungerSlider;
     public float maxHunger = 100f;
     public float currentHunger;
-    public float hungerDrainRate = 5f; // per second
+    public float hungerDrainRate = 5f;
+    public GameObject starvedText;
 
     void Start()
     {
+        starvedText.SetActive(false);
+
         currentHunger = maxHunger;
         hungerSlider.maxValue = maxHunger;
         hungerSlider.value = currentHunger;
@@ -24,9 +30,12 @@ public class HungerSystem : MonoBehaviour
 
         if (currentHunger <= 0)
         {
-            Debug.Log("Player Starved!");
+            starvedText.SetActive(true);
+            Invoke("LoadGameOver", 2f);
         }
+    
     }
+
 
     void DrainHunger()
     {
@@ -43,5 +52,11 @@ public class HungerSystem : MonoBehaviour
     {
         currentHunger += amount;
         currentHunger = Mathf.Clamp(currentHunger, 0f, maxHunger);
+    }
+    void LoadGameOver()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        SceneManager.LoadScene("GameOver");
     }
 }
