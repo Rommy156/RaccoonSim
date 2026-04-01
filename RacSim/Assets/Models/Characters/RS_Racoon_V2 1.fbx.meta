@@ -1,44 +1,9 @@
 fileFormatVersion: 2
-guid: f6f38ee71ddbf3a4e9d8426d58b2b08e
+guid: d1129e2cb5d522a4eb23ab8a3992cce0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: RS_Racoon_ArmL_Mat
-    second: {fileID: 2800000, guid: d8ea93e944c78cf40948e775379e97a0, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: RS_Racoon_ArmR_Mat
-    second: {fileID: 2800000, guid: 636b3f77dae36bc47bfa0ea8021a9fa2, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: RS_Racoon_Head_Mat
-    second: {fileID: 2800000, guid: 30badf612767d7b4bb2f8d250b5c2c61, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: RS_Racoon_LegL_Mat
-    second: {fileID: 2800000, guid: 05ae28e420b5e264da26921d731d8347, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: RS_Racoon_LegR_Mat
-    second: {fileID: 2800000, guid: 488fee65410dfbe43874d9b9e328dd53, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: RS_Racoon_Tail_Mat
-    second: {fileID: 2800000, guid: 8b92e76c3b0b2ab478332292b1b6096f, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: RS_Racoon_Torso_Mat
-    second: {fileID: 2800000, guid: 10167c78d528e1c458d286bf5569263e, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

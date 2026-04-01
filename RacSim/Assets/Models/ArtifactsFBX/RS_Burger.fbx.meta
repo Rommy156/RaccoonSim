@@ -3,7 +3,22 @@ guid: 5dc3f9ed84648284182c4714a1db154a
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 81bcf83faa5059040ad908abfe133b99, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: eccdd4acfe8fe2644956a0e611e07f36, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: RSBurger
+    second: {fileID: 2800000, guid: a593c2ea3a3709a45bff074010988038, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
