@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:RacSim/Assets/Models/MapFBX/RacoonMap.fbx.meta
+guid: 4c1391be4ee960e478fc2ab29c6ef45e
+========
 guid: f10378087893c46408357486df969fea
+>>>>>>>> origin/main:RacSim/Assets/Models/Objects/RS_BaseBin.fbx.meta
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
