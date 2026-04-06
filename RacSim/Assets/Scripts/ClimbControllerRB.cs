@@ -111,14 +111,14 @@ public class ClimbControllerRB : MonoBehaviour
         float v = Input.GetAxisRaw("Vertical");
         float h = Input.GetAxisRaw("Horizontal");
 
-        Vector3 upMove = Vector3.up * (v * climbSpeed);
-        Vector3 wallRight = Vector3.Cross(Vector3.up, wallNormal).normalized;
-        Vector3 sideMove = wallRight * (h * strafeSpeed);
+        Vector3 wallUp = Vector3.ProjectOnPlane(Vector3.up, wallNormal).normalized;
+        Vector3 wallRight = Vector3.Cross(wallNormal, wallUp).normalized;
 
-        rb.velocity = upMove + sideMove;
+        Vector3 move = wallUp * (v * climbSpeed) + wallRight * (h * strafeSpeed);
 
-        if (v >= 0f)
-            SnapToWall();
+        rb.velocity = move;
+
+        SnapToWall();
     }
 
     bool DetectWall(out RaycastHit hit)

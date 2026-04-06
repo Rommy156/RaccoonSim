@@ -26,6 +26,9 @@ public class PlayerController : MonoBehaviour
     //store animator component
     private Animator anim;
 
+    //reference to climb controller
+    private ClimbControllerRB climb;
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,11 +41,25 @@ public class PlayerController : MonoBehaviour
 
         //set initial jump direction
         jumpDirection = Vector3.up;
+
+        //initialize climb controller
+        climb = GetComponent<ClimbControllerRB>();
     }
 
     // Update is called once per frame
     void Update()
-    {   //check the ground using a function
+    {
+        //if climbing, stop normal player update movement
+        if (climb != null && climb.IsClimbing)
+        {
+            if (anim != null)
+            {
+                anim.SetBool("isMoving", false);
+            }
+            return;
+        }
+
+        //check the ground using a function
         isGrounded = CheckGround();
         //now that we know the answer to isGrounded, call the Jump() function.
         if (isGrounded)
@@ -50,6 +67,7 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
     }
+
     void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -60,20 +78,25 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+
     //FixedUpdate is called per frame at a set interval
     private void FixedUpdate()
     {
+        //if climbing, stop normal rigidbody movement
+        if (climb != null && climb.IsClimbing)
+            return;
+
         //create temporary floates to store Horizontal and Vertical input
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
-        
         movement = (transform.forward * v * moveSpeed) + (transform.right * h * strafeSpeed);
         movement = Vector3.Normalize(movement);
+
         //move with the RigidBody
         //your current position + answer to the calculation above and muliplied with Time.DeltaTime
-        rb.MovePosition(transform.position + movement * Time.deltaTime);
-        
+        rb.MovePosition(transform.position + movement * Time.fixedDeltaTime);
+
         //check if player is moving
         if (movement.magnitude > 0.01f)
         {
@@ -98,5 +121,3 @@ public class PlayerController : MonoBehaviour
     }
 
 }
-
-
