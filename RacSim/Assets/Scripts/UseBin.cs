@@ -50,7 +50,7 @@ public class UseBin : MonoBehaviour
 
             for (int i = 0; i < 5; i++)
             {
-                if (Random.value < 0.4f) // 40% chance
+                if (Random.value < 0.2f) 
                 {
                     ArtifactPickup artifact = Instantiate(artifactPrefab);
 

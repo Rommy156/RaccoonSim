@@ -12,7 +12,7 @@ public class AllenGameManager : MonoBehaviour
     public static AllenGameManager Instance;
 
     public int collectedItems = 0;
-    public int itemsToWin = 10;
+    public int itemsToWin = 6;
 
     void Awake()
     {
