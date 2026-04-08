@@ -11,7 +11,7 @@ public class HungerSystem : MonoBehaviour
     public Slider hungerSlider;
     public float maxHunger = 100f;
     public float currentHunger;
-    public float hungerDrainRate = 5f;
+    public float hungerDrainRate = 2f;
     public GameObject starvedText;
 
     void Start()

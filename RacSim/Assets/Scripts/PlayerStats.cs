@@ -13,11 +13,11 @@ public class PlayerStats : MonoBehaviour
     public float gameDuration = 300f;
     private float survivalTimer = 0f;
 
-    private ClimbControllerRB climbController;
+    //private ClimbControllerRB climbController;
 
     void Start()
     {
-        climbController = GetComponent<ClimbControllerRB>();
+        //climbController = GetComponent<ClimbControllerRB>();
         ResetStats();
     }
 
@@ -26,10 +26,10 @@ public class PlayerStats : MonoBehaviour
         survivalTimer += Time.deltaTime;
 
         float difficultyMultiplier = 1f + (survivalTimer / gameDuration) * 2f;
-        float climbingMultiplier = (climbController != null && climbController.IsClimbing) ? 2.5f : 1f;
+        //float climbingMultiplier = (climbController != null && climbController.IsClimbing) ? 2.5f : 1f;
 
         hunger -= hungerDrainRate * difficultyMultiplier * Time.deltaTime;
-        energy -= energyDrainRate * difficultyMultiplier * climbingMultiplier * Time.deltaTime;
+        //energy -= energyDrainRate * difficultyMultiplier * climbingMultiplier * Time.deltaTime;
 
         hunger = Mathf.Clamp(hunger, 0f, maxHunger);
         energy = Mathf.Clamp(energy, 0f, maxEnergy);
